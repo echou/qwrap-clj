@@ -30,6 +30,13 @@ Generates the following Q code:
 ```q
 ({a:(1;2;3);b:(`a;`b;`c);([a:a] b:b)}[])
 ```
+
+And 
+
+```clojure
+(run-q ["" 6001] (q- ...))
 ```
+
+sends q code to Q server on `localhost:6001`. (You starts Q process with `q -p 6001`)
 
 
