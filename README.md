@@ -11,7 +11,7 @@ Turn clojure code to KDB+/Q code.
 ## Usage
 
 ```clojure
-(require ['qwrap.q :refer :all])
+(require ['qwrap.core :refer :all])
 ```
 It provides many `q-*` macros similar to clojure counter-parts. The two entrypoints are:
 
