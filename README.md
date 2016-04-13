@@ -39,4 +39,68 @@ And
 
 sends q code to Q server on `localhost:6001`. (You starts Q process with `q -p 6001`)
 
+## Q Functions
+
+### q-def
+
+Define a Q variable.
+
+```clojure
+(q-def a [1 2 3])
+```
+
+### q-let
+
+Local scope.
+
+```clojure
+(q-let [a [1 2 3]
+        b [:a :b :c]]
+  (q-concat a b))
+```
+
+### q-defn
+
+Define a Q function.
+
+```clojure
+(q-defn my-concat [a b]
+  (q-concat a b))
+```
+
+### q-if
+
+If-else expression.
+
+```clojure
+(q-if (= a b) (+ a 1) (- a 1))
+```
+
+### q-cond
+Multiple conditions.
+
+```clojure
+(q-cond
+  (= a b) a
+  :else b)
+```
+
+### q-get / q-get-in
+
+List/Dict/Table lookup.
+```clojure
+(q-get list 1)
+(q-get list [1 2 3])    ;-> [ list[1] list[2] list[3] ]
+(q-get-in list [1 2 3]) ;-> list[1][2][3]
+```
+
+### q-assoc / q-assoc-in
+
+Associate value to multiple keys (or a key path).
+
+```clojure
+(q-def L [[1 2] [10 20] [-10 -20])
+(q-assoc L [1 2] [100 200])      ;-> [[1 2] [100 200] [100 200]]
+(q-assoc-in L [1 1] 200) ; -> [ [1 2] [10 200] [-10 -20] ]
+```
 

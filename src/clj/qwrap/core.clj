@@ -625,13 +625,6 @@
              'fn         'q-fn
              'list       'q-list
              'vector     'q-list
-             '+          'q-plus
-             '-          'q-minus
-             '*          'q-mul
-             '/          'q-div
-             '=          'q-eq
-             '===        'q-match
-             'not=       'q-not-match
              'flatten    'q-flatten
              'println    'q-println
              'take       'q-take
@@ -646,7 +639,13 @@
              'update!    'q-update
              'update-in! 'q-update-in}
 
-  {})
+  {'+    'q-plus
+   '-    'q-minus
+   '*    'q-mul
+   '/    'q-div
+   '=    'q-eq
+   '===  'q-match
+   'not= 'q-not-match})
 
 (defn normalize-q [body]
   (clojure.walk/prewalk
