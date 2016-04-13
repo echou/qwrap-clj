@@ -104,3 +104,33 @@ Associate value to multiple keys (or a key path).
 (q-assoc-in L [1 1] 200) ; -> [ [1 2] [10 200] [-10 -20] ]
 ```
 
+### q-file
+
+Generate a Q file construct
+
+```clojure
+(q-file "abc.csv") ; -> `:abc.csv
+```
+
+### q-load-csv
+
+Load csv file.
+
+```clojure
+; (q-load-csv csv-file types)
+
+(q-load-csv (q-file "abc.csv") [:double :int :date :symbol])
+```
+
+### q-save-table
+
+Save table to a file or a splayed directory.
+
+```clojure
+(q-save-table tbl (q-file "abc.csv"))  ; save to a file
+(q-save-table tbl (q-file "abc/def/")
+              :sympath (q-file "abc/")
+              :splayed? true
+              :compress? true)         ; save to a splayed directory and encode symbols.
+                                       ; -> (`:abc/def/;17;2;6) set .Q.en[`:abc/] tbl
+```
