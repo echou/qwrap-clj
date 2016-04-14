@@ -57,9 +57,15 @@ sends q code to Q server on `localhost:6001`. (You starts Q process with `q -p 6
 Define a Q variable.
 
 ```clojure
-(q-def L [1 2 3])
+(q-def L [1])
+; -> (enlist 1)
+
+(q-def L [1 2 3])           
+; -> (1;2;3) 
+
 (q-def D {a [1 2 3]
           b [:a :b :c]})
+; -> ((1;2;3) ! {`a;`b;`c})
 ```
 
 Note: a literal vector is converted to Q list. a literal map is converted to Q dict.
@@ -72,6 +78,8 @@ Define in local scope.
 (q-let [a [1 2 3]
         b [:a :b :c]]
   (q-concat a b))
+  
+; -> ({a:(1;2;3); b:(`a;`b;`c); (a , b)}[])  
 ```
 
 ### q-defn
@@ -81,6 +89,8 @@ Define a Q function.
 ```clojure
 (q-defn my-concat [a b]
   (q-concat a b))
+; -> my-concat: {[a b] (a , b)}  
+  
 ```
 
 ### q-if
